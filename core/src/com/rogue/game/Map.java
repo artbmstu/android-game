@@ -90,6 +90,9 @@ public class Map implements Serializable {
         int position = 0;
         fillGroundPart(0, 3, height);
         position = 4;
+        for (int i = 0; i < length; i++) {
+            data[i][49] = SYMB_GRASS;
+        }
         while (position < length) {
             int len = MathUtils.random(3, 5);
             height += MathUtils.random(-2, 2);

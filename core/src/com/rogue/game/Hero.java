@@ -50,13 +50,15 @@ public class Hero extends BaseUnit implements Serializable {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
             jump();
         }
-
         if (Gdx.input.isKeyPressed(Input.Keys.L) && Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.D) || (Gdx.input.isKeyPressed(Input.Keys.L) && Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.A))){
             fire(dt, true, 3);
         } else if (Gdx.input.isKeyPressed(Input.Keys.L) && Gdx.input.isKeyPressed(Input.Keys.W)){
             fire(dt, true, 2);
         } else if (Gdx.input.isKeyPressed(Input.Keys.L)) {
             fire(dt, true, 1);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.K)) {
+            switchCeiling();
         }
         super.update(dt);
     }

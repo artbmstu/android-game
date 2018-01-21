@@ -39,6 +39,7 @@ public abstract class BaseUnit implements Serializable {
     protected float speed;
     protected float reddish;
     protected Type type;
+    protected boolean isSwitched;
 
     public float getCenterX() {
         return hitArea.x + hitArea.width / 2;
@@ -153,6 +154,10 @@ public abstract class BaseUnit implements Serializable {
         }
         hitArea.y++;
     }
+    public void switchCeiling(){
+        velocity.y = 1500.0f;
+        isSwitched = true;
+    }
 
     public boolean takeDamage(int dmg) {
         hp -= dmg;
@@ -189,8 +194,17 @@ public abstract class BaseUnit implements Serializable {
         if (right && regions[frameIndex].isFlipX()) {
             regions[frameIndex].flip(true, false);
         }
+        if (isSwitched && !right && regions[frameIndex].isFlipX()) {
+            regions[frameIndex].flip(true, false);
+        }
+        if (isSwitched && right && !regions[frameIndex].isFlipX()) {
+            regions[frameIndex].flip(true, false);
+        }
         batch.setColor(1.0f, 1.0f - reddish, 1.0f - reddish, 1.0f);
-        batch.draw(regions[frameIndex], hitArea.x - (width - hitArea.width) / 2, hitArea.y - (height - hitArea.height) / 2);
+        if (!isSwitched) {
+            batch.draw(regions[frameIndex], hitArea.x - (width - hitArea.width) / 2, hitArea.y - (height - hitArea.height) / 2);
+        } else batch.draw(regions[frameIndex],hitArea.x - (width - hitArea.width) / 2, hitArea.y - (height - hitArea.height) / 2, width / 2, height / 2, width, height, 1,1, 180.0f );
+        isSwitched = false;
         batch.setColor(1.0f, 1.0f, 1.0f, 1.0f);
     }
 

@@ -85,7 +85,7 @@ public class GameScreen implements Screen {
         Gdx.input.setInputProcessor(null);
         map = new Map(64);
         map.generateMap();
-        hero = new Hero(this, map, 300, 300);
+        hero = new Hero(this, map, 300, 400);
         monsterEmitter = new MonsterEmitter(this, 400, 10.0f);
         for (int i = 0; i < 10; i++) {
             monsterEmitter.createMonster((int) map.getIslandPosition()[i].x, (int) map.getIslandPosition()[i].y);
