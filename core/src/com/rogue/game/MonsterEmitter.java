@@ -67,7 +67,8 @@ public class MonsterEmitter implements Serializable {
         factoryCurrentTimer += dt;
         if (factoryCurrentTimer > factoryRate) {
             factoryCurrentTimer -= factoryRate;
-            createMonster(MathUtils.random(0, gameScreen.getMap().getEndOfWorldX()), 500);
+            int islandMonsterCreation = MathUtils.random(0,9);
+            createMonster((int) gameScreen.getMap().getIslandPosition()[islandMonsterCreation].x, (int) gameScreen.getMap().getIslandPosition()[islandMonsterCreation].y);
         }
         for (int i = 0; i < monsters.length; i++) {
             if (monsters[i].isActive() && activeRect.contains(monsters[i].getCenterX(), monsters[i].getCenterY())) {

@@ -124,13 +124,25 @@ public abstract class BaseUnit implements Serializable {
         right = true;
     }
 
-    public void fire(float dt, boolean isPlayer) {
+    public void fire(float dt, boolean isPlayer, int direction) {
         firePressTimer += dt;
         if (firePressTimer > timeBetweenFire) {
             firePressTimer -= timeBetweenFire;
-            float bulletVelX = 600.0f;
-            if (!right) bulletVelX *= -1;
-            gameScreen.getBulletEmitter().setup(isPlayer, getCenterX(), getCenterY(), bulletVelX, 0);
+            if (direction == 1) {
+                float bulletVelX = 600.0f;
+                if (!right) bulletVelX *= -1;
+                gameScreen.getBulletEmitter().setup(isPlayer, getCenterX(), getCenterY(), bulletVelX, 0);
+            }
+            if (direction == 2){
+                float bulletVelY = 600.0f;
+                gameScreen.getBulletEmitter().setup(isPlayer, getCenterX(), getCenterY(), 0, bulletVelY);
+            }
+            if (direction == 3){
+                float bulletVelY = 300.0f;
+                float bulletVelX = 300.0f;
+                if (!right) bulletVelX *= -1;
+                gameScreen.getBulletEmitter().setup(isPlayer, getCenterX(), getCenterY(), bulletVelX, bulletVelY);
+            }
         }
     }
 

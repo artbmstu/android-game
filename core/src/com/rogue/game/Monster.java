@@ -20,7 +20,7 @@ public class Monster extends BaseUnit {
 
     @Override
     public void update(float dt) {
-        fire(dt, false);
+        fire(dt, false, 1);
         if (Math.abs(gameScreen.getHero().getCenterX() - getCenterX()) > 100.0f) {
             if (gameScreen.getHero().getCenterX() < getCenterX()) {
                 moveLeft();

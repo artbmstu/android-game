@@ -21,9 +21,14 @@ public class Map implements Serializable {
     private int endOfWorldX;
     private char[][] data;
     private BaseUnit[][] blockMask;
+    private Vector2[] islandPosition;
 
     public int getEndOfWorldX() {
         return endOfWorldX;
+    }
+
+    public Vector2[] getIslandPosition() {
+        return islandPosition;
     }
 
     public Map(int length) {
@@ -75,6 +80,7 @@ public class Map implements Serializable {
     }
 
     public void generateMap() {
+        islandPosition = new Vector2[10];
         for (int i = 0; i < data.length; i++) {
             for (int j = 0; j < height; j++) {
                 data[i][j] = SYMB_SKY;
@@ -92,7 +98,7 @@ public class Map implements Serializable {
             fillGroundPart(position, position + len - 1, height);
             position += len;
         }
-        for (int i = 0; i < 0; i++) {
+        for (int i = 0; i < 10; i++) {
             int island_length = MathUtils.random(3, 8);
             int island_position = MathUtils.random(10, length - island_length - 4);
             int island_y = MathUtils.random(0, this.height - 10);
@@ -103,6 +109,8 @@ public class Map implements Serializable {
             for (int j = 0; j < island_length; j++) {
                 data[island_position + j][island_y] = SYMB_GRASS;
             }
+            islandPosition[i] = new Vector2(island_position * 40, island_y * 40 + 40);
+
         }
         repackGround();
     }

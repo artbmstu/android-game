@@ -87,8 +87,8 @@ public class GameScreen implements Screen {
         map.generateMap();
         hero = new Hero(this, map, 300, 300);
         monsterEmitter = new MonsterEmitter(this, 400, 10.0f);
-        for (int i = 0; i < 15; i++) {
-            monsterEmitter.createMonster(MathUtils.random(40, 130) + 170 * i, 500);
+        for (int i = 0; i < 10; i++) {
+            monsterEmitter.createMonster((int) map.getIslandPosition()[i].x, (int) map.getIslandPosition()[i].y);
 
         }
         trashEmitter = new TrashEmitter(this, atlas.findRegion("asteroid64"), 20);
@@ -188,7 +188,7 @@ public class GameScreen implements Screen {
             hero.moveLeft();
         }
         if (btnFire.isPressed()) {
-            hero.fire(dt, true);
+            hero.fire(dt, true, 1);
         }
         if (btnJump.isPressed()) {
             hero.jump();
